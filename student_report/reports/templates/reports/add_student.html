@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Student Marks</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Student</button>
+    </form>
+   
+    <h2>Students List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Marks</th>
+                <th>grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.subject }}</td>
+                    <td>{{ student.marks }}</td>
+                    <td>{{ student.grade}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   
+    <a href="{% url 'download_pdf' %}">Download PDF</a>
+</body>
+</html>
+
